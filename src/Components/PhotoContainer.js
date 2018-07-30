@@ -3,19 +3,16 @@ import Img from './Img';
 import NotFound from './NotFound';
 
 const PhotoContainer = props => {
-
-    const results = props.data;
-
+    const results = props.imgs;
     let imgs;
 
     if(results.length > 0) {
-        console.log(results);
         imgs = results.map(img => 
-            <Img url={`https://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg`} key={img.id} />
+            <Img url={`https://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg`} key={img.id} alt={img.title} />
         );
     }
     else {
-        <NotFound />
+        imgs = <NotFound />;
     }
 
     return(

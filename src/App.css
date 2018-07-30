@@ -13,11 +13,16 @@
 
 .main-nav {
   text-align: center;
+  margin-bottom: 25px;
 }
 
 .buttonNew {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.buttonNew a {
+  color: white;
 }
 
 .img-list {
@@ -27,7 +32,6 @@
 
 .photo-container li {
   display: block;
-  margin: auto;
 }
 
 .photo-container li {

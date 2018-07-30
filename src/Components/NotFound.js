@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NotFound = props => (
-    <div class="not-found">
+    <div className="not-found">
     <h3>No Results Found</h3>
     <p>You search did not return any results. Please try again.</p>
     </div>

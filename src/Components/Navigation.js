@@ -1,14 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-const Navigation = props => (
-        <nav className="main-nav">
-        <ul>
-        <Button className="btn-primary buttonNew">Cats</Button>
-        <Button className="btn-primary buttonNew">Dogs</Button>
-        <Button className="btn-primary buttonNew">Computers</Button>
-        </ul>
-    </nav>
-    );
+// component for the list of categories
+const Navigation = () => (
+  <div className="main-nav"> 
+    <Button className="btn-primary buttonNew"><NavLink to="/cats">Cats</NavLink></Button>
+    <Button className="btn-primary buttonNew"><NavLink to="/dogs">Dogs</NavLink></Button>
+    <Button className="btn-primary buttonNew"><NavLink to="/computers">Computers</NavLink></Button>   
+  </div>
+);
 
 export default Navigation;

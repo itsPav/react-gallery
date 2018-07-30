@@ -1,52 +1,45 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import SearchForm from './Components/SearchForm';
-import Navigation from './Components/Navigation';
-import PhotoContainer from './Components/PhotoContainer';
-import apiKey from './config';
+
+import {
+  BrowserRouter,
+  Route,
+  Switch
+} from 'react-router-dom';
+
+import Home from './Components/Home';
+
+import cats from './Components/cats';
+import dogs from './Components/dogs';
+import computers from './Components/computers';
+
+import errorPage from './Components/errorPage';
 
 export default class App extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      imgs: [],
-      loading: true
-    };
-  } 
-
-  componentDidMount() {
-    this.performSearch();
-  } 
-
-  performSearch = (query = 'cats') => {
-    axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=10&format=json&nojsoncallback=1`)
-    .then(response => {
-      this.setState({
-        imgs: response.data.photos.photo,
-        loading: false
-      });
-    })
-    .catch(error => {
-      console.log('Error fetching and parsing data', error);
-    });
-  }
-
   render() {
     return (
-      <div className="container">
-                
-        <SearchForm onSearch={this.performSearch}/>
+      <BrowserRouter>
+        <div className="container">
+        
+          <Switch>
 
-        <Navigation />
+            <Route exact path='/' render={(props) => (
+              <Home query="Robots"/>)
+            }/>
 
-        {
-          (this.state.loading)
-          ? <p>Loading...</p>
-          : <PhotoContainer data={this.state.imgs} />
-        }
+            <Route path='/search/:query' render={(props) => (
+              <Home {...props} />)
+            }/>
 
-      </div>
+            <Route exact path="/" component={Home} />
+            <Route path="/cats" render={cats} />
+            <Route path="/dogs" component={dogs} />
+            <Route path="/computers" component={computers} />
+
+            <Route component={errorPage} />
+            
+          </Switch>
+        </div>
+      </BrowserRouter>  
     );
   }
 }
